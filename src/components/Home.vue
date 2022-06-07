@@ -68,6 +68,10 @@
 import RENDER from "../js/sakura";
 import RainyDay from "../js/rainyday";
 
+function getImageUrl(name) {
+  return new URL(`../../static/img/${name}`, import.meta.url).href;
+}
+
 export default {
   mounted() {
     this.screenWidth = document.body.clientWidth;
@@ -114,56 +118,56 @@ export default {
       showCursor: true,
       imgList: [
         {
-          url: "./static/img/dolores/mmexport1646954639190.jpeg",
+          url: getImageUrl("dolores/mmexport1646954639190.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1646954992126.jpeg",
+          url: getImageUrl("dolores/mmexport1646954992126.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1647008144240.jpeg",
+          url: getImageUrl("dolores/mmexport1647008144240.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1647008148950.jpeg",
+          url: getImageUrl("dolores/mmexport1647008148950.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1647008233830.jpeg",
+          url: getImageUrl("dolores/mmexport1647008233830.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1650984335083.jpeg",
+          url: getImageUrl("dolores/mmexport1650984335083.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1651551717778.jpeg",
+          url: getImageUrl("dolores/mmexport1651551717778.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
           loading: true,
         },
         {
-          url: "./static/img/dolores/mmexport1652628550753.jpeg",
+          url: getImageUrl("dolores/mmexport1652628550753.jpeg"),
           front: true,
           center: false,
           pos: { x: null, y: null },
@@ -172,11 +176,11 @@ export default {
       ],
       currentImg: 0,
       rainImgs: [
-        "./static/img/rainy/1.jpg",
-        "./static/img/rainy/2.jpg",
-        "./static/img/rainy/3.jpg",
-        "./static/img/rainy/4.jpg",
-        "./static/img/rainy/5.jpg",
+        getImageUrl("rainy/1.jpg"),
+        getImageUrl("rainy/2.jpg"),
+        getImageUrl("rainy/3.jpg"),
+        getImageUrl("rainy/4.jpg"),
+        getImageUrl("rainy/5.jpg"),
       ],
     };
   },

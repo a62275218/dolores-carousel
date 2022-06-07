@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  publicPath: '/static/',
+  publicPath: '/static',
   base: '/dolores-carousel/',
   plugins: [vue()]
 })
