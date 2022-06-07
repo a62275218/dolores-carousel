@@ -3,6 +3,8 @@ import Home from './components/Home.vue'
 import loader from './components/loader.vue';
 import loading from './components/loading.vue';
 import App from './App.vue'
+import $ from 'jquery'
+window.jQuery = window.$ = $
 
 const app = createApp(App);
 app.component('home', Home)
