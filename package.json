@@ -2,12 +2,15 @@
   "name": "dolores-carousel",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://a62275218.github.io/dolores-carousel",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
