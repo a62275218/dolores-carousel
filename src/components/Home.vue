@@ -40,26 +40,21 @@
             />
           </div>
           <div class="side side-back" :id="img.center ? 'back-canvas' : ''">
+            <div class="back-word">{{ img.word }}</div>
             <img
               class="back-container"
               :id="img.center ? 'center-back' : ''"
               :src="rainImgs[currentImg]"
               alt=""
             />
-            <!--<div class="filter">-->
-
-            <!--</div>-->
-            <!--<div class="sky">-->
-            <!--<img class="one" src="../../static/img/cloud_one.png" alt="">-->
-            <!--<img class="two" src="../../static/img/cloud_two.png" alt="">-->
-            <!--<img class="three" src="../../static/img/cloud_three.png" alt="">-->
-            <!--</div>-->
           </div>
         </div>
       </div>
     </div>
-    <div class="nav" v-for="(img, idx) in imgList" :key="idx">
-      <span></span>
+    <div :class="[finish ? 'nav-wrapper center' : 'nav-wrapper']">
+      <div class="nav" v-for="(img, idx) in imgList" :key="idx">
+        <span :class="[img.reveal ? 'show' : 'hide']">{{ img.word }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -116,60 +111,77 @@ export default {
       imgHeight: 0,
       rotate: 0,
       showCursor: true,
+      finish: false,
       imgList: [
         {
           url: getImageUrl("dolores/mmexport1646954639190.jpeg"),
           front: true,
+          reveal: false,
           center: false,
+          word: "Happy",
           pos: { x: null, y: null },
           loading: true,
         },
         {
           url: getImageUrl("dolores/mmexport1646954992126.jpeg"),
           front: true,
+          reveal: false,
           center: false,
-          pos: { x: null, y: null },
-          loading: true,
-        },
-        {
-          url: getImageUrl("dolores/mmexport1647008144240.jpeg"),
-          front: true,
-          center: false,
-          pos: { x: null, y: null },
-          loading: true,
-        },
-        {
-          url: getImageUrl("dolores/mmexport1647008148950.jpeg"),
-          front: true,
-          center: false,
-          pos: { x: null, y: null },
-          loading: true,
-        },
-        {
-          url: getImageUrl("dolores/mmexport1647008233830.jpeg"),
-          front: true,
-          center: false,
-          pos: { x: null, y: null },
-          loading: true,
-        },
-        {
-          url: getImageUrl("dolores/mmexport1650984335083.jpeg"),
-          front: true,
-          center: false,
+          word: "Birthday",
           pos: { x: null, y: null },
           loading: true,
         },
         {
           url: getImageUrl("dolores/mmexport1651551717778.jpeg"),
           front: true,
+          reveal: false,
           center: false,
+          word: "my",
           pos: { x: null, y: null },
           loading: true,
         },
         {
           url: getImageUrl("dolores/mmexport1652628550753.jpeg"),
           front: true,
+          reveal: false,
           center: false,
+          word: "darling",
+          pos: { x: null, y: null },
+          loading: true,
+        },
+        {
+          url: getImageUrl("dolores/mmexport1647008144240.jpeg"),
+          front: true,
+          reveal: false,
+          center: false,
+          word: "I",
+          pos: { x: null, y: null },
+          loading: true,
+        },
+        {
+          url: getImageUrl("dolores/mmexport1647008148950.jpeg"),
+          front: true,
+          reveal: false,
+          center: false,
+          word: "love",
+          pos: { x: null, y: null },
+          loading: true,
+        },
+        {
+          url: getImageUrl("dolores/mmexport1647008233830.jpeg"),
+          front: true,
+          reveal: false,
+          center: false,
+          word: "you",
+          pos: { x: null, y: null },
+          loading: true,
+        },
+        {
+          url: getImageUrl("dolores/mmexport1650984335083.jpeg"),
+          front: true,
+          reveal: false,
+          center: false,
+          word: "forever",
           pos: { x: null, y: null },
           loading: true,
         },
@@ -181,6 +193,8 @@ export default {
         getImageUrl("rainy/3.jpg"),
         getImageUrl("rainy/4.jpg"),
         getImageUrl("rainy/5.jpg"),
+        getImageUrl("rainy/1.jpg"),
+        getImageUrl("rainy/2.jpg"),
       ],
     };
   },
@@ -226,6 +240,10 @@ export default {
       }
       if (currentImg.center) {
         currentImg.front = !currentImg.front;
+        currentImg.reveal = true;
+        if (this.imgList.every((img) => img.reveal === true)) {
+          this.finish = true;
+        }
         this.showCursor = false;
         let img = document.getElementById("center-back");
         let engine = new RainyDay({
@@ -275,6 +293,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
   height: 100vh;
   background: #000000;
@@ -283,6 +302,33 @@ export default {
     width: 100%;
     height: 100%;
     perspective: 800px;
+  }
+  .center {
+    transform: translate3d(0, -30vh, 0) scale(1.6);
+  }
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-around;
+    z-index: 999;
+    color: #fff;
+    padding-bottom: 30px;
+    width: 50%;
+    text-align: center;
+    font-size: 2vw;
+    text-shadow: 0 0 0.1em, 0 0 0.3em;
+    transition: all ease 1s;
+    .nav {
+      height: 20px;
+      transition: all ease 1s;
+      .hide {
+        transition: all ease 0.5s;
+        opacity: 0;
+      }
+      .show {
+        transition: all ease 0.5s;
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -356,6 +402,14 @@ export default {
           height: 100%;
         }
         transform: rotateY(180deg);
+        .back-word {
+          position: absolute;
+          margin: 10px;
+          z-index: 9999;
+          font-size: 2vw;
+          color: #fff;
+          text-shadow: 1px 1px 1px #000, -1px -1px 1px #fff;
+        }
       }
       .image {
         width: 100%;
